@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Image from 'next/image'
-import { AgentDetails } from "@/app/lib/types"
+import { AgentDetails } from "@/lib/types"
 import { RiArrowDownDoubleFill } from 'react-icons/ri'
 
 export default function AgentDetail({ params }: { params: { uuid: string } }) {

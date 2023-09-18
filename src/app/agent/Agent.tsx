@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { AgentDetails } from "@/app/lib/types"
+import { AgentDetails } from "@/lib/types"
 
 export default function Agent() {
     const [agents, setAgents] = useState<AgentDetails[] | null>(null)
