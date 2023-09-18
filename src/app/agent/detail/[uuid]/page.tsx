@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import Image from 'next/image'
 import { AgentDetails } from "@/app/lib/types"
+import { RiArrowDownDoubleFill } from 'react-icons/ri'
 
 export default function AgentDetail({ params }: { params: { uuid: string } }) {
     const { uuid } = params
@@ -53,76 +54,95 @@ export default function AgentDetail({ params }: { params: { uuid: string } }) {
                 agent
                     ?
                     (
-                        <div className='container p-10'>
-                            <div
-                                className='flex flex-col box-border p-5 border-4 gap-5 rounded-2xl items-center bg-slate-700'
-                            >
-                                <div
-                                    className='rounded-2xl'
-                                    style={{
-                                        backgroundImage: `url(${agent.background || ''})`,
-                                        backgroundSize: 'cover',
-                                    }}
-                                >
-                                    <Image src={agent.fullPortrait} alt={agent.displayName} width={400} height={500} />
-                                </div>
-                                <div className='flex flex-col items-center text-center gap-5'>
-                                    <div>
-                                        <h1 className='font-poppins font-bold text-2xl text-white'>{agent.displayName}</h1>
-                                        <span className='font-poppins font-normal text-sm text-white'>{agent.role.displayName}</span>
+                        <div className='container bg-gray-800 max-w-lg min-h-screen'>
+                            <div className='container p-10'>
+                                <div className='flex flex-col p-6 gap-5 items-center'>
+                                    <div
+                                        style={{
+                                            backgroundImage: `url(${agent.background || ''})`,
+                                            backgroundSize: 'cover',
+                                        }}
+                                    >
+                                        <Image src={agent.fullPortrait} alt={agent.displayName} width={400} height={400} />
                                     </div>
-                                    <div>
-                                        <p className='font-poppins font-normal text-sm text-white'>{agent.description}</p>
-                                    </div>
-                                    <div>
+                                    <div className='flex flex-col items-center text-center gap-5'>
+                                        <div className="px-2 bg-gray-700 rounded-xl">
+                                            <span className='font-poppins font-normal text-sm text-gray-400'>{agent.role.displayName}</span>
+                                        </div>
+                                        <div>
+                                            <h1 className='font-poppins font-bold text-3xl text-gray-200'>{agent.displayName}</h1>
+                                        </div>
+
+                                        <div className="flex flex-col gap-5 p-4 bg-gray-700 shadow-2xl rounded-xl">
+                                            <p className='font-poppins font-normal text-sm text-gray-300'>{agent.description}</p>
+                                            <div className='flex flex-col items-center'>
+                                                <span className="font-poppins font-bold text-sm text-gray-300">Agent's Voice Line</span>
+                                                {
+                                                    agent.voiceLine.mediaList.length > 0
+                                                        ?
+                                                        (
+                                                            <div className="mt-5">
+                                                                <audio
+                                                                    id="audioElement"
+                                                                    controls
+                                                                >
+                                                                    <source src={agent.voiceLine.mediaList[0].wave} type="audio/wav" />
+                                                                    Your browser does not support the audio element.
+                                                                </audio>
+                                                            </div>
+                                                        )
+                                                        :
+                                                        ''
+                                                }
+                                            </div>
+                                        </div>
+                                        <div className='grid grid-cols-4 gap-6 mt-5 p-4 bg-gray-700 shadow-2xl rounded-xl'>
+                                            {
+                                                agent.abilities.map((ability, index) => {
+                                                    return (
+                                                        <div onClick={() => showAbilityDescription(ability)} key={index} className='flex flex-col items-center gap-2 cursor-pointer'>
+                                                            {
+                                                                ability.displayIcon !== null
+                                                                    ?
+                                                                    (
+                                                                        <Image src={ability.displayIcon} alt={ability.displayName} width={35} height={35} />
+                                                                    )
+                                                                    :
+                                                                    <span className='font-poppins font-normal text-sm text-gray-300'>No Icon</span>
+                                                            }
+                                                            <span className='font-poppins font-normal text-xs text-gray-300'>{ability.displayName}</span>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
                                         {
-                                            agent.voiceLine.mediaList.length > 0
+                                            selectedAbility
                                                 ?
                                                 (
-                                                    <div>
-                                                        <audio
-                                                            id="audioElement"
-                                                            controls
-                                                        >
-                                                            <source src={agent.voiceLine.mediaList[0].wave} type="audio/wav" />
-                                                            Your browser does not support the audio element.
-                                                        </audio>
-                                                    </div>
+                                                    <>
+                                                        <RiArrowDownDoubleFill
+                                                            size="50px"
+                                                            color='gray'
+                                                        />
+                                                        <div className='flex flex-col items-center text-center gap-2 mt-4 p-4 bg-gray-700 shadow-2xl rounded-xl'>
+                                                            <div className="px-2 bg-gray-800 rounded-xl">
+                                                                <span className='font-poppins font-normal text-sm text-gray-400'>{selectedAbility?.slot}</span>
+                                                            </div>
+                                                            <p className='font-poppins font-normal text-sm text-gray-300'>{selectedAbility?.description}</p>
+                                                        </div>
+                                                    </>
                                                 )
                                                 :
                                                 ''
                                         }
                                     </div>
-                                    <div className='flex items-center gap-6 mt-5'>
-                                        {
-                                            agent.abilities.map((ability, index) => {
-                                                return (
-                                                    <div onClick={() => showAbilityDescription(ability)} key={index} className='flex flex-col items-center gap-2 cursor-pointer'>
-                                                        <Image src={ability.displayIcon} alt={ability.displayName} width={35} height={35} />
-                                                        <span className='font-poppins font-normal text-xs text-white'>{ability.displayName}</span>
-                                                    </div>
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                    {
-                                        selectedAbility
-                                            ?
-                                            (
-                                                <div className='flex flex-col gap-2 mt-4'>
-                                                    <span className='font-poppins font-normal text-sm text-white'>Type: {selectedAbility?.slot}</span>
-                                                    <p className='font-poppins font-normal text-sm text-white'>{selectedAbility?.description}</p>
-                                                </div>
-                                            )
-                                            :
-                                            ''
-                                    }
                                 </div>
                             </div>
                         </div>
                     )
                     :
-                    'Loading...'
+                    ''
             }
         </>
     )
