@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import Footer from '@/components/Layout/Footer'
+import Header from '@/components/Layout/Header'
 
 export const metadata: Metadata = {
   title: 'Valorant 101',
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Header />
         <main>
           {children}
         </main>
