@@ -31,15 +31,17 @@ export default function Agent() {
 
     return (
         <>
-            <div className='flex flex-col p-6 gap-5 rounded-xl shadow-2xl items-center bg-gray-800 max-w-lg'>
-                <h1 className='font-poppins font-bold text-xl text-gray-100'>Valorant Agents</h1>
+            <div className='flex flex-col p-4 gap-5 rounded-xl shadow-2xl items-center bg-gray-900 mt-5'>
+                <div className="px-2 py-1 bg-gray-600 rounded-xl">
+                    <h1 className='font-poppins font-bold text-base text-gray-200'>Valorant Agents</h1>
+                </div>
                 <div className='grid grid-cols-5 gap-2'>
                     {
                         agents?.map((agent) => {
                             if (agent.isPlayableCharacter) {
                                 return (
                                     <Link key={agent?.uuid} href={`/agent/detail/${agent.uuid}`}>
-                                        <button className='flex flex-col items-center p-1 rounded-lg bg-gray-700 hover:bg-red-500 transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300'>
+                                        <button className='flex flex-col p-1 pb-0 rounded-lg bg-gray-600 hover:bg-red-500 transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300'>
                                             <Image src={agent.displayIconSmall} alt={agent.displayName} width={50} height={50} />
                                         </button>
                                     </Link>
