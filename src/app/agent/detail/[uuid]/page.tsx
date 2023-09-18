@@ -30,7 +30,7 @@ export default function AgentDetail({ params }: { params: { uuid: string } }) {
         }
 
         fetchAgent()
-    }, [])
+    }, [uuid])
 
     const showAbilityDescription = (ability: { displayName: string, displayIcon: string, description: string, slot: string } | null) => {
         setSelectedAbility(ability)
@@ -76,7 +76,7 @@ export default function AgentDetail({ params }: { params: { uuid: string } }) {
                                         <div className="flex flex-col gap-5 p-4 bg-gray-700 shadow-2xl rounded-xl">
                                             <p className='font-poppins font-normal text-sm text-gray-300'>{agent.description}</p>
                                             <div className='flex flex-col items-center'>
-                                                <span className="font-poppins font-bold text-sm text-gray-300">Agent's Voice Line</span>
+                                                <span className="font-poppins font-bold text-sm text-gray-300">Agent&apos;s Voice Line</span>
                                                 {
                                                     agent.voiceLine.mediaList.length > 0
                                                         ?
