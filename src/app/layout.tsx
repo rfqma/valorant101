@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Valorant 101',
   description: 'Valorant 101',
   icons: {
-    icon: '/favicon.ico'
+    icon: '/icon.ico'
   }
 }
 
