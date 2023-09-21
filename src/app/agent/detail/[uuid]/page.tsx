@@ -9,7 +9,6 @@ export default function AgentDetail({ params }: { params: { uuid: string } }) {
     const { uuid } = params
     const [agent, setAgent] = useState<AgentDetails | null>(null)
     const [selectedAbility, setSelectedAbility] = useState<{ displayName: string, displayIcon: string, description: string, slot: string } | null>(null)
-    const [isPlaying, setIsPlaying] = useState(false)
 
     useEffect(() => {
         async function fetchAgent() {
@@ -36,27 +35,15 @@ export default function AgentDetail({ params }: { params: { uuid: string } }) {
         setSelectedAbility(ability)
     }
 
-    const togglePlay = () => {
-        const audioElement = document.getElementById('audioElement') as HTMLAudioElement
-        if (audioElement) {
-            if (isPlaying) {
-                audioElement.pause()
-            } else {
-                audioElement.play()
-            }
-            setIsPlaying(!isPlaying)
-        }
-    }
-
     return (
         <>
             {
                 agent
                     ?
                     (
-                        <div className='container bg-gray-800 max-w-lg min-h-screen'>
-                            <div className='container p-10'>
-                                <div className='flex flex-col p-6 gap-5 items-center'>
+                        <div className='bg-gray-50 min-h-screen'>
+                            <div className='container p-10 max-w-2xl bg-gray-800 rounded-2xl my-10'>
+                                <div className='flex flex-col gap-5 items-center'>
                                     <div
                                         style={{
                                             backgroundImage: `url(${agent.background || ''})`,
@@ -67,7 +54,7 @@ export default function AgentDetail({ params }: { params: { uuid: string } }) {
                                     </div>
                                     <div className='flex flex-col items-center text-center gap-5'>
                                         <div className="px-2 bg-gray-700 rounded-xl">
-                                            <span className='font-poppins font-normal text-sm text-gray-400'>{agent.role.displayName}</span>
+                                            <span className='font-poppins font-semibold text-xs text-gray-300'>{agent.role.displayName}</span>
                                         </div>
                                         <div>
                                             <h1 className='font-poppins font-bold text-3xl text-gray-200'>{agent.displayName}</h1>
@@ -75,7 +62,7 @@ export default function AgentDetail({ params }: { params: { uuid: string } }) {
 
                                         <div className="flex flex-col gap-5 p-4 bg-gray-700 shadow-2xl rounded-xl">
                                             <p className='font-poppins font-normal text-sm text-gray-300'>{agent.description}</p>
-                                            <div className='flex flex-col items-center'>
+                                            {/* <div className='flex flex-col items-center'>
                                                 <span className="font-poppins font-bold text-sm text-gray-300">Agent&apos;s Voice Line</span>
                                                 {
                                                     agent.voiceLine.mediaList.length > 0
@@ -94,7 +81,7 @@ export default function AgentDetail({ params }: { params: { uuid: string } }) {
                                                         :
                                                         ''
                                                 }
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <div className='grid grid-cols-4 gap-6 mt-5 p-4 bg-gray-700 shadow-2xl rounded-xl'>
                                             {
@@ -127,7 +114,7 @@ export default function AgentDetail({ params }: { params: { uuid: string } }) {
                                                         />
                                                         <div className='flex flex-col items-center text-center gap-2 mt-4 p-4 bg-gray-700 shadow-2xl rounded-xl'>
                                                             <div className="px-2 bg-gray-800 rounded-xl">
-                                                                <span className='font-poppins font-normal text-sm text-gray-400'>{selectedAbility?.slot}</span>
+                                                                <span className='font-poppins font-semibold text-xs text-gray-300'>{selectedAbility?.slot}</span>
                                                             </div>
                                                             <p className='font-poppins font-normal text-sm text-gray-300'>{selectedAbility?.description}</p>
                                                         </div>

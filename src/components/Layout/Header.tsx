@@ -3,26 +3,17 @@ import Link from "next/link"
 export default function Header() {
     return (
         <>
-            <div className='container bg-gray-800 max-w-lg shadow-2xl'>
-                <div className='flex p-4 items-center justify-between'>
+            <div className='bg-gray-50'>
+                <div className='flex p-4 items-center justify-between px-40'>
                     <Link href={'/'}>
-                        <h1 className='font-poppins font-extrabold text-lg text-gray-300'>Val-101</h1>
+                        <h1 className='font-poppins font-extrabold text-lg text-gray-800'>VAL 101</h1>
                     </Link>
-                    <div className='flex gap-2'>
+                    <div className='flex gap-10'>
                         <Link href={'/'}>
-                            <div className='rounded-2xl bg-gray-900 px-4 py-1 shadow-2xl'>
-                                <span className='font-poppins font-semibold text-sm text-gray-300'>Home</span>
-                            </div>
-                        </Link>
-                        <Link href={'/agent'}>
-                            <div className='rounded-2xl bg-gray-900 px-4 py-1 shadow-2xl'>
-                                <span className='font-poppins font-semibold text-sm text-gray-300'>Agents</span>
-                            </div>
+                            <span className='font-poppins font-semibold text-sm text-gray-700'>Home</span>
                         </Link>
                         <Link href={'/map'}>
-                            <div className='rounded-2xl bg-gray-900 px-4 py-1 shadow-2xl'>
-                                <span className='font-poppins font-semibold text-sm text-gray-300'>Maps</span>
-                            </div>
+                            <span className='font-poppins font-semibold text-sm text-gray-700'>Maps</span>
                         </Link>
                     </div>
                 </div>
