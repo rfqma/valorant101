@@ -13,10 +13,10 @@ export default function Home() {
               <div className='flex flex-col justify-between gap-5'>
                 <div className='flex flex-col p-5 gap-5 rounded-xl shadow-xl items-center bg-gray-50 max-w-md'>
                   <p>
-                    Agent's Voice Line dari <strong>https://valorant-api.com/v1/agents/</strong> lagi error/null
+                    Agent&apos;s Voice Line dari <strong>https://valorant-api.com/v1/agents/</strong> lagi error/null
                   </p>
                   <p>
-                    Agent's Voice Line dari <strong>https://valorant-api.com/v1/agents/</strong> lagi error/null
+                    Agent&apos;s Voice Line dari <strong>https://valorant-api.com/v1/agents/</strong> lagi error/null
                   </p>
                 </div>
                 <div className='flex flex-col p-5 gap-5 rounded-xl shadow-xl items-center bg-gray-50 max-w-md'>
