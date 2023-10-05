@@ -1,30 +1,40 @@
-import Agent from "./agent/Agent"
+import { Agents } from "@/components/Agents"
 
-export default function Home() {
+const getAgents = async () => {
+  try {
+    const res = await fetch('https://valorant-api.com/v1/agents', {
+      method: 'GET'
+    })
+
+    const data = await res.json()
+
+    if (data.status !== 200) {
+      throw new Error('Network response was not ok!')
+    }
+
+    if (data.status === 200) {
+      if (data.data.length > 0) {
+        return data.data
+      } else {
+        console.log('No agents found!')
+      }
+    }
+
+  } catch (error) {
+    console.log('Error fetching agents: ', error)
+  }
+}
+
+export default async function HomePage() {
+  const agents = await getAgents()
+
   return (
     <>
-      <div className='bg-gray-50 min-h-screen'>
-        <div className='container p-10 max-w-4xl'>
-          <div className='flex flex-col gap-5 items-center'>
-            <div className='flex gap-5'>
-              <div className=''>
-                <Agent />
-              </div>
-              <div className='flex flex-col justify-between gap-5'>
-                <div className='flex flex-col p-5 gap-5 rounded-xl shadow-xl items-center bg-gray-50 max-w-md'>
-                  <p>
-                    Agent&apos;s Voice Line dari <strong>https://valorant-api.com/v1/agents/</strong> lagi error/null
-                  </p>
-                  <p>
-                    Agent&apos;s Voice Line dari <strong>https://valorant-api.com/v1/agents/</strong> lagi error/null
-                  </p>
-                </div>
-                <div className='flex flex-col p-5 gap-5 rounded-xl shadow-xl items-center bg-gray-50 max-w-md'>
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae enim, iusto impedit totam illum modi corporis voluptatum excepturi consectetur consequatur inventore nesciunt adipisci nihil ratione eligendi quibusdam assumenda aliquid in?
-                  </p>
-                </div>
-              </div>
+      <div className='min-h-screen bg-white'>
+        <div className='container'>
+          <div className='flex flex-col items-center gap-5 mb-10'>
+            <div>
+              <Agents agents={agents} />
             </div>
           </div>
         </div>
