@@ -8,7 +8,7 @@ export default function Header() {
                     <div className='flex items-center justify-between p-6'>
                         <div>
                             <Link href={'/'}>
-                                <h1 className='text-2xl font-extrabold text-black'>VAL-101</h1>
+                                <h1 className='text-2xl font-extrabold text-black'>VAL 101</h1>
                             </Link>
                         </div>
                         <div className='flex gap-8'>
