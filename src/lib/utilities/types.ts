@@ -1,14 +1,13 @@
 export type AgentDetail = {
-    displayIconSmall: string
     uuid: string
-    background: string
     displayName: string
-    fullPortrait: string
     description: string
+    displayIconSmall: string
+    fullPortrait: string
+    background: string
     isPlayableCharacter: boolean
     role: AgentRole
     abilities: AgentAbility[]
-    voiceLine: AgentVoiceLine[]
 }
 
 export type AgentRole = {
@@ -16,22 +15,10 @@ export type AgentRole = {
 }
 
 export type AgentAbility = {
-    displayName: string
-    displayIcon: string
-    description: string
     slot: string
-}
-
-export type AgentVoiceLine = {
-    minDuration: number
-    maxDuration: number
-    mediaList: AgentVoiceLineMediaList[]
-}
-
-export type AgentVoiceLineMediaList = {
-    id: number,
-    wwise: string,
-    wave: string
+    displayName: string
+    description: string
+    displayIcon: string
 }
 
 export type MapDetail = {
@@ -43,8 +30,6 @@ export type MapDetail = {
     displayIcon: string
     listViewIcon: string
     splash: string
-    assetPath: string
-    mapUrl: string
     xMultiplier: number
     yMultiplier: number
     xScalarToAdd: number
@@ -55,7 +40,7 @@ export type MapDetail = {
 export type MapCallout = {
     regionName: string
     superRegionName: string
-    location: MapCalloutLocation[]
+    location: MapCalloutLocation
 }
 
 export type MapCalloutLocation = {
