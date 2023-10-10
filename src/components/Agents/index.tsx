@@ -30,7 +30,7 @@ export const Agents = ({ agents }: { agents: AgentDetail[] }) => {
                         key={agent.uuid}
                         href={`/agent/${agent.uuid}`}
                       >
-                        <button className='p-1 transition duration-300 ease-in-out rounded-lg shadow-xl bg-darkGreen hover:bg-lightGreen hover:-translate-y-1 hover:scale-110'>
+                        <button className='p-1 transition duration-300 ease-in-out rounded-lg shadow-xl bg-lightGreen hover:bg-darkGreen hover:-translate-y-1 hover:scale-110'>
                           <Image
                             src={agent.displayIconSmall}
                             alt={agent.displayName}
