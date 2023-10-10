@@ -1,8 +1,8 @@
-import { AgentDetails } from "@/components/AgentDetails"
+import { MapDetails } from "@/components/MapDetails"
 
-const getAgentDetails = async (uuid: string) => {
+const getMapDetails = async (uuid: string) => {
   try {
-    const res = await fetch(`https://valorant-api.com/v1/agents/${uuid}`, {
+    const res = await fetch(`https://valorant-api.com/v1/maps/${uuid}`, {
       method: 'GET'
     })
 
@@ -19,19 +19,19 @@ const getAgentDetails = async (uuid: string) => {
     }
 
   } catch (error) {
-    console.log('Error fetching agent: ', error)
+    console.log('Error fetching map: ', error)
   }
 }
 
-export default async function AgentDetailsPage({ params }: { params: any }) {
+export default async function MapDetailsPage({ params }: { params: any }) {
   const { uuid } = params
-  const agentDetails = await getAgentDetails(uuid)
+  const mapDetails = await getMapDetails(uuid)
 
   return (
     <>
       <div className="min-h-screen bg-white">
         <div className="container">
-          <AgentDetails agentDetails={agentDetails} />
+          <MapDetails mapDetails={mapDetails} />
         </div>
       </div>
     </>

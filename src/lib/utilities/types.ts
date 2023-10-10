@@ -33,3 +33,32 @@ export type AgentVoiceLineMediaList = {
     wwise: string,
     wave: string
 }
+
+export type MapDetail = {
+    uuid: string
+    displayName: string
+    narrativeDescription: string
+    tacticalDescription: string
+    coordinates: string
+    displayIcon: string
+    listViewIcon: string
+    splash: string
+    assetPath: string
+    mapUrl: string
+    xMultiplier: number
+    yMultiplier: number
+    xScalarToAdd: number
+    yScalarToAdd: number
+    callouts: MapCallout[]
+}
+
+export type MapCallout = {
+    regionName: string
+    superRegionName: string
+    location: MapCalloutLocation[]
+}
+
+export type MapCalloutLocation = {
+    x: number
+    y: number
+}
