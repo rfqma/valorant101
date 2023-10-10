@@ -12,8 +12,8 @@ export default function Header() {
                             </Link>
                         </div>
                         <div className='flex gap-8'>
-                            <Link href={'/'}>
-                                <span className='text-base font-semibold text-darkGreen hover:text-black'>Home</span>
+                            <Link href={'/agent'}>
+                                <span className='text-base font-semibold text-darkGreen hover:text-black'>Agent</span>
                             </Link>
                             <Link href={'/map'}>
                                 <span className='text-base font-semibold text-darkGreen hover:text-black'>Map</span>

@@ -1,40 +1,36 @@
-import { Agents } from "@/components/Agents"
-
-const getAgents = async () => {
-  try {
-    const res = await fetch('https://valorant-api.com/v1/agents', {
-      method: 'GET'
-    })
-
-    const data = await res.json()
-
-    if (data.status !== 200) {
-      throw new Error('Network response was not ok!')
-    }
-
-    if (data.status === 200) {
-      if (data.data.length > 0) {
-        return data.data
-      } else {
-        console.log('No agents found!')
-      }
-    }
-
-  } catch (error) {
-    console.log('Error fetching agents: ', error)
-  }
-}
+import Link from "next/link";
 
 export default async function HomePage() {
-  const agents = await getAgents()
-
   return (
     <>
       <div className='min-h-screen bg-white'>
         <div className='container'>
           <div className='flex flex-col items-center gap-5 mb-10'>
-            <div>
-              <Agents agents={agents} />
+            <div className="bg-white">
+              <div className="container">
+                <div className="flex flex-col items-center w-full gap-4 p-5 rounded-lg shadow-xl">
+                  <p className="text-sm font-semibold text-black">
+                    Welcome to the{' '}
+                    <Link
+                      href={'https://valorant-api.com'}
+                      className="underline"
+                    >
+                      Valorant API
+                    </Link>
+                    {' '}demo!
+                  </p>
+                  <p className="text-center text-sm font-semibold text-black">
+                    This is a simple demo app that uses{' '}
+                    <Link
+                      href={'https://dash.valorant-api.com'}
+                      className="underline"
+                    >
+                      https://dash.valorant-api.com/
+                    </Link>
+                    {' '}to display some data.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
