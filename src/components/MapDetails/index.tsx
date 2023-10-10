@@ -6,7 +6,7 @@ export const MapDetails = ({ mapDetails }: { mapDetails: MapDetail }) => {
     <>
       <div className="bg-black rounded-xl">
         <div className="container">
-          <div className="flex flex-col items-center gap-4 pb-6 pt-6">
+          <div className="flex flex-col items-center gap-4 pt-6 pb-6">
             <div>
               <Image
                 src={mapDetails.displayIcon}
@@ -41,7 +41,7 @@ export const MapDetails = ({ mapDetails }: { mapDetails: MapDetail }) => {
               />
             </div>
             <div className="flex gap-5">
-              <div className="flex flex-col gap-1 items-center">
+              <div className="flex flex-col items-center gap-1">
                 <span className="text-xs font-normal text-white">
                   X Multiplier
                 </span>
@@ -49,7 +49,7 @@ export const MapDetails = ({ mapDetails }: { mapDetails: MapDetail }) => {
                   {mapDetails.xMultiplier}
                 </span>
               </div>
-              <div className="flex flex-col gap-1 items-center">
+              <div className="flex flex-col items-center gap-1">
                 <span className="text-xs font-normal text-white">
                   Y Multiplier
                 </span>
@@ -57,7 +57,7 @@ export const MapDetails = ({ mapDetails }: { mapDetails: MapDetail }) => {
                   {mapDetails.yMultiplier}
                 </span>
               </div>
-              <div className="flex flex-col gap-1 items-center">
+              <div className="flex flex-col items-center gap-1">
                 <span className="text-xs font-normal text-white">
                   X Scalar
                 </span>
@@ -65,7 +65,7 @@ export const MapDetails = ({ mapDetails }: { mapDetails: MapDetail }) => {
                   {mapDetails.xScalarToAdd}
                 </span>
               </div>
-              <div className="flex flex-col gap-1 items-center">
+              <div className="flex flex-col items-center gap-1">
                 <span className="text-xs font-normal text-white">
                   Y Scalar
                 </span>
@@ -74,19 +74,19 @@ export const MapDetails = ({ mapDetails }: { mapDetails: MapDetail }) => {
                 </span>
               </div>
             </div>
-            <h2 className="text-grey font-bold">Region</h2>
-            <div className="grid grid-cols-2 items-center gap-2 w-full">
+            <h2 className="font-bold text-grey">Region</h2>
+            <div className="grid items-center w-full grid-cols-2 gap-2">
               {
                 mapDetails.callouts.map((callout, index) => {
                   return (
                     <div
                       key={index}
-                      className="bg-darkGreen rounded p-3 flex flex-col"
+                      className="flex flex-col p-3 rounded bg-darkGreen"
                     >
-                      <span className="text-white text-xs font-bold">{callout.regionName}</span>
-                      <span className="text-white text-xs font-semibold">{callout.superRegionName}</span>
-                      <span className="text-white text-xs font-medium">{callout.location.x}</span>
-                      <span className="text-white text-xs font-medium">{callout.location.y}</span>
+                      <span className="text-xs font-bold text-white">{callout.regionName}</span>
+                      <span className="text-xs font-semibold text-white">{callout.superRegionName}</span>
+                      <span className="text-xs font-medium text-white">{callout.location.x}</span>
+                      <span className="text-xs font-medium text-white">{callout.location.y}</span>
                     </div>
                   )
                 })
