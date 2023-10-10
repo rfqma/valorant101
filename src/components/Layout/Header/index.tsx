@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link"
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef } from "react"
 import { GiHamburgerMenu } from 'react-icons/gi'
 
 export default function Header() {
@@ -13,14 +13,14 @@ export default function Header() {
     }
 
     const handleHeaderClickEverywhere = (event: any) => {
-        if (menuRef.current && !menuRef.current.contains(event.target)) {
+        if (menuRef.current && typeof document !== 'undefined' && !menuRef.current.contains(event.target)) {
             setHeaderOpen(false)
         }
     }
 
-    if (headerOpen) {
+    if (headerOpen && typeof document !== 'undefined') {
         document.addEventListener('mousedown', handleHeaderClickEverywhere)
-    } else {
+    } else if (typeof document !== 'undefined') {
         document.removeEventListener('mousedown', handleHeaderClickEverywhere)
     }
 
