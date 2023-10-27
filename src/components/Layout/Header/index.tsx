@@ -1,66 +1,68 @@
 'use client'
 
 import Link from "next/link"
-import { useState, useRef } from "react"
-import { GiHamburgerMenu } from 'react-icons/gi'
+import { navigationMenuLinks } from "@/lib/utilities/data"
+import { Bars4Icon } from "@heroicons/react/24/solid"
+import { useState } from "react"
+import { Drawer, DrawerCloseButton, DrawerContent, DrawerHeader } from "./Drawer"
 
-export default function Header() {
-    const [headerOpen, setHeaderOpen] = useState<boolean>(false)
-    const menuRef = useRef<HTMLDivElement>(null)
+export const Header = () => {
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
-    const handleHeaderToggler = () => {
-        setHeaderOpen(!headerOpen)
-    }
-
-    const handleHeaderClickEverywhere = (event: any) => {
-        if (menuRef.current && typeof document !== 'undefined' && !menuRef.current.contains(event.target)) {
-            setHeaderOpen(false)
-        }
-    }
-
-    if (headerOpen && typeof document !== 'undefined') {
-        document.addEventListener('mousedown', handleHeaderClickEverywhere)
-    } else if (typeof document !== 'undefined') {
-        document.removeEventListener('mousedown', handleHeaderClickEverywhere)
+    const handleDrawerOpen = () => {
+        setIsDrawerOpen(!isDrawerOpen)
     }
 
     return (
         <>
             <div className='bg-white'>
-                <div className="container">
-                    <div className='flex items-center justify-between p-6'>
-                        <div>
-                            <Link href={'/'}>
-                                <h1 className='text-2xl font-extrabold text-black'>VAL 101</h1>
-                            </Link>
-                        </div>
-                        <div>
-                            <button
-                                onClick={handleHeaderToggler}
-                                className=""
-                            >
-                                <GiHamburgerMenu />
-                            </button>
-                            {
-                                headerOpen ?
-                                    <div id="hamburgerMenu" ref={menuRef} className="fixed right-7 bg-black shadow-lg border rounded-md p-4">
-                                        <div className="flex flex-col gap-2">
-                                            <Link href={'/agent'} className="border-b border-body-color">
-                                                <span className='text-sm font-normal text-white hover:text-darkGreen'>Agent</span>
-                                            </Link>
-                                            <Link href={'/map'} className="border-b border-body-color">
-                                                <span className='text-sm font-normal text-white hover:text-darkGreen'>Map</span>
-                                            </Link>
-                                            <Link href={'/weapon'} className="border-b border-body-color">
-                                                <span className='text-sm font-normal text-white hover:text-darkGreen'>Weapon</span>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                    :
-                                    null
-                            }
-                        </div>
+                <div className="container p-6 xs:p-7 flex items-center justify-between">
+                    <div>
+                        <Link href={'/'}>
+                            <h1 className='text-xl xs:text-3xl font-bold'>Valorant 101</h1>
+                        </Link>
                     </div>
+                    <div className="hidden md:flex gap-10">
+                        {
+                            navigationMenuLinks.map((link, index) => {
+                                return (
+                                    <>
+                                        <Link href={link.path} key={index}>
+                                            <span className='text-lg font-medium text-black/80 hover:text-black'>
+                                                {link.name}
+                                            </span>
+                                        </Link>
+                                    </>
+                                )
+                            })
+                        }
+                    </div>
+                    <div className="flex md:hidden cursor-pointer rounded hover:bg-black/10 p-3" onClick={handleDrawerOpen}>
+                        <Bars4Icon className="w-5 h-5" />
+                    </div>
+                    <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen} placement="right">
+                        <DrawerCloseButton />
+                        <DrawerHeader>
+                            Valorant 101
+                        </DrawerHeader>
+                        <DrawerContent>
+                            <div className="flex flex-col gap-3">
+                                {
+                                    navigationMenuLinks.map((link, index) => {
+                                        return (
+                                            <>
+                                                <Link href={link.path} key={index}>
+                                                    <span className='text-lg font-medium text-black/80 hover:text-black'>
+                                                        {link.name}
+                                                    </span>
+                                                </Link>
+                                            </>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </DrawerContent>
+                    </Drawer>
                 </div>
             </div>
         </>

@@ -1,3 +1,8 @@
+export type NavigationMenuLink = {
+    name: string
+    path: string
+}
+
 export type AgentDetail = {
     uuid: string
     displayName: string
