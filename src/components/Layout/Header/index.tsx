@@ -16,7 +16,7 @@ export const Header = () => {
     return (
         <>
             <div className='bg-white'>
-                <div className="container p-6 xs:p-7 flex items-center justify-between">
+                <div className="container p-6 xs:p-7 flex items-center justify-between mb-10">
                     <div>
                         <Link href={'/'}>
                             <h1 className='text-xl xs:text-3xl font-bold'>Valorant 101</h1>

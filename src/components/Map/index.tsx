@@ -6,13 +6,13 @@ export const Map = ({ map }: { map: MapDetail }) => {
   return (
     <>
       <Link href={`/map/${map.uuid}`}>
-        <div className="overflow-hidden shadow-md rounded-xl bg-darkGreen">
+        <div className="overflow-hidden shadow-md rounded-xl bg-black">
           <div>
             <Image
               src={map.listViewIcon}
               alt={map.displayName}
-              width={300}
-              height={300}
+              width={1000}
+              height={1000}
               className="object-cover w-full border-b border-body-color"
             />
           </div>
