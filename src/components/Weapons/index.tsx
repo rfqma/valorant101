@@ -3,18 +3,14 @@ import { Weapon } from "../Weapon"
 
 export const Weapons = ({ weapons }: { weapons: WeaponDetail[] }) => {
   return (
-    <>
-      <div className="container">
-        <div className="flex flex-col gap-4">
-          {
-            weapons.map((weapon, index) => {
-              return (
-                <Weapon key={index} weapon={weapon} />
-              )
-            })
-          }
-        </div>
-      </div>
-    </>
+    <div className="container flex flex-col gap-4 md:grid md:grid-cols-3 md:gap-5">
+      {
+        weapons.map((weapon, index) => {
+          return (
+            <Weapon weapon={weapon} key={index} />
+          )
+        })
+      }
+    </div>
   )
 }

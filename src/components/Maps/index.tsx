@@ -3,18 +3,14 @@ import { Map } from "../Map"
 
 export const Maps = ({ maps }: { maps: MapDetail[] }) => {
   return (
-    <>
-      <div className="container">
-        <div className="flex flex-col gap-4">
-          {
-            maps.map((map, index) => {
-              return (
-                <Map key={index} map={map} />
-              )
-            })
-          }
-        </div>
-      </div>
-    </>
+    <div className="container flex flex-col gap-4 md:grid md:grid-cols-2 md:gap-5">
+      {
+        maps.map((map, index) => {
+          return (
+            <Map map={map} key={index} />
+          )
+        })
+      }
+    </div>
   )
 }
